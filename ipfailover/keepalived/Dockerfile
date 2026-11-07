@@ -1,5 +1,5 @@
 # Test extension builder stage
-FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.26-openshift-5.0 AS test-extension-builder
+FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.26-openshift-5.1 AS test-extension-builder
 WORKDIR /go/src/github.com/openshift/ipfailover/keepalived
 COPY tests/ tests/
 RUN cd tests && \
@@ -12,7 +12,7 @@ RUN cd tests && \
 #
 # ImageName: openshift/origin-keepalived-ipfailover
 #
-FROM registry.ci.openshift.org/ocp/5.0:base-rhel9
+FROM registry.ci.openshift.org/ocp/5.1:base-rhel9
 
 RUN INSTALL_PKGS="kmod keepalived iproute psmisc nmap-ncat net-tools ipset ipset-libs procps-ng nftables" && \
     yum install -y $INSTALL_PKGS && \
